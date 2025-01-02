@@ -18,10 +18,11 @@ public class ProductController {
         return productService.findAll();
     }
 
-//    @GetMapping("/products/popular")
-//    public List<ProductResponse> find(){
-//        return productService.findPopular();
-//    }
+    //인기상품조회
+    @GetMapping("/products/popular")
+    public List<ProductResponse> PopularProducts(){
+        return productService.findPopular();
+    }
 
     //상품 상세 조회
     @GetMapping("/products/{productId}")
