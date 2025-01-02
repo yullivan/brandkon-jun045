@@ -17,15 +17,6 @@ public class CategoryService {
     //메인에서 보이는 카테고리 목록 ( 추천, 종류 보여줌)
     //전체 브랜드중 추천 5개
 
-//    //각 카테고리 생성
-//    public void create(CreateCategoryRequest request) {
-//        Category category = categoryRepository.findByName(request.name()).orElseThrow();
-//        categoryRepository.save(new Category(
-//                request.name(),
-//                request.slug(),
-//                request.imageUrl()));
-//    }
-
     // 카테고리 목록 조회
     public List<CategoryResponse> findAll(){
         List<Category> categories = categoryRepository.findAll();
@@ -37,22 +28,4 @@ public class CategoryService {
                         category.getImageUrl()))
                 .toList();
     }
-
-//    //수정
-//    @Transactional
-//    public Category update(Long id, CreateCategoryRequest request){
-//        Category 수정할카테고리 = categoryRepository.findById(id).orElseThrow();
-//        수정할카테고리.setName(request.name());
-//
-//        return 수정할카테고리;
-//    }
-//
-//    //삭제
-//    public void delete(Long id){
-//        Category 삭제할카테고리 = categoryRepository.findById(id).orElseThrow();
-//        categoryRepository.deleteById(id);
-//    }
-
-
-
 }

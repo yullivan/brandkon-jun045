@@ -20,6 +20,9 @@ public class Product {
     private int expirationDays;
     private int salesCount;
 
+    protected Product() {
+    }
+
     public Product(Brand brand, String productName, int price, String imageUrl, int expirationDays, int salesCount) {
         this.brand = brand;
         this.productName = productName;

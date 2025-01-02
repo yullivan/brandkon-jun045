@@ -71,4 +71,8 @@ public class Brand {
         this.imageUrl = imageUrl;
     }
 
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
