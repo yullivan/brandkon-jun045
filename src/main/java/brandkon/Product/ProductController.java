@@ -14,19 +14,20 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<ProductResponse> findAll(){
+    public List<ProductResponse> findAll(@RequestParam(required = false) Long brandId){
         return productService.findAll();
     }
 
     //인기상품조회
     @GetMapping("/products/popular")
-    public List<ProductResponse> PopularProducts(){
+    public List<ProductResponse> PopularProducts(@RequestParam(required = false) Long categoryId,
+                                                 @RequestParam(required = false) Long brandId){
         return productService.findPopular();
     }
 
     //상품 상세 조회
     @GetMapping("/products/{productId}")
-    public ProductDetailResponse find(@PathVariable Long Id){
-        return productService.findDetail(Id);
+    public ProductDetailResponse findById(@PathVariable Long productId){
+        return productService.findDetail(productId);
     }
 }

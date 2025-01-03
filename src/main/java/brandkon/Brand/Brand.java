@@ -5,10 +5,15 @@ import brandkon.Category.CategoryService;
 import brandkon.Product.Product;
 import jakarta.persistence.*;
 import org.springframework.boot.SpringApplication;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 //브랜드 목록
+@EntityListeners(AuditingEntityListener.class) // 추가
 @Entity
 public class Brand {
     @Id
@@ -18,6 +23,28 @@ public class Brand {
     private String imageUrl;
     private String guidelines;
 
+    @CreatedDate
+    private LocalDateTime CreatedAt; //createdDateTime
+
+    @LastModifiedDate // 추가
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
+    //@ManyToOne
+    //private Category category;  //단방향 1:n관계일때 사용
+
+    @OneToMany(mappedBy = "brand")
+    private List<BrandCategory> categories;
+
+    protected Brand() {
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return CreatedAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
 
     public Brand(String guidelines) {
         this.guidelines = guidelines;
@@ -29,16 +56,8 @@ public class Brand {
     }
 
     //1카테고리 - n 브랜드
-//    @OneToMany(mappedBy = "Category")  //연관관계의 주인을 정하는 방법은 mappedBy 속성을 지정 ,
-//                                        // 주인이 아닌 엔티티 클래스는 mappedBy 속성을 사용해 주인을 정할 수
-//    private List<Brand> brands;
-
-    @ManyToOne
-    @JoinColumn(name = "Category_Id")
-    private Category category;
-
-    protected Brand() {
-    }
+//    @OneToMany(mappedBy = "")    //연관관계의 주인을 정하는 방법은 mappedBy 속성을 지정 ,
+//    private List<Brand> brands;  // 주인이 아닌 엔티티 클래스는 mappedBy 속성을 사용해 주인을 정할 수
 
     //getter
     public Long getId() {
@@ -70,5 +89,7 @@ public class Brand {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+
 
 }

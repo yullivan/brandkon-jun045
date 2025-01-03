@@ -18,4 +18,5 @@ public class CategoryController {
     public List<CategoryResponse> findAll(){
         return categoryService.findAll();
     }
+
 }

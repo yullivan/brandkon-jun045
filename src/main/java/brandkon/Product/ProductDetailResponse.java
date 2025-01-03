@@ -8,12 +8,9 @@ public record ProductDetailResponse(
                                     int price,
                                     Brand brand,
                                     int expirationDays // product 엔티티에도 추가해줘야함
-)
-{
+) {
     public record Brand(Long id,
                         String name,
                         String guidelines //브랜드 엔티티에도 추가해줘야함
-    ) {
-
-    }
+    ) { }
 }

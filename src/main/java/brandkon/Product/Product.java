@@ -3,22 +3,37 @@ package brandkon.Product;
 import brandkon.Brand.Brand;
 import jakarta.persistence.*;
 import org.hibernate.query.sql.internal.ParameterRecognizerImpl;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @CreatedDate
+    private LocalDateTime CreatedAt = LocalDateTime.now(); //createdDateTime
+
+    @LastModifiedDate // 추가
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
     //현재 만드는 클래스 기준 : 연결하고싶은 클래스
     @ManyToOne
     private Brand brand;
 
+    //private String brandName; 중복데이터 안하는 이유 - 이미 브랜드 클래스 존재하기 때문.
     private String productName;
     private int price;
     private String imageUrl;
     private int expirationDays;
     private int salesCount;
+
+    public Product() {
+    }
 
     public Product(Brand brand, String productName, int price, String imageUrl, int expirationDays, int salesCount) {
         this.brand = brand;
@@ -57,6 +72,14 @@ public class Product {
 
     public int getSalesCount() {
         return salesCount;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return CreatedAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     //setter

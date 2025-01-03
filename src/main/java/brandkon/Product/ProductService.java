@@ -56,7 +56,5 @@ public class ProductService {
                          product.getPrice(),
                          product.getImageUrl()))
                  .toList();
-
-
     }
 }

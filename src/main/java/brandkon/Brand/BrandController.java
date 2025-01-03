@@ -3,6 +3,7 @@ package brandkon.Brand;
 import jakarta.persistence.GeneratedValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @RestController
 public class BrandController {
 
-    BrandService brandService;
+    private final BrandService brandService;
 
     public BrandController(BrandService brandService) {
         this.brandService = brandService;
@@ -22,7 +23,7 @@ public class BrandController {
     }
 
     @GetMapping("/brands/{brandId}")
-    public BrandDetailResponse findOne(@PathVariable Long id){
-        return brandService.findDetail(id);
+    public BrandDetailResponse findById(@PathVariable Long productId){
+        return brandService.findDetail(productId);
     }
 }

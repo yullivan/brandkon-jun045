@@ -1,5 +1,7 @@
 package brandkon.Category;
 
+import brandkon.Product.Product;
+import brandkon.Product.ProductResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,4 +30,9 @@ public class CategoryService {
                         category.getImageUrl()))
                 .toList();
     }
+
+    //추천 브랜드콘 최대 5개
+
+
+
 }
